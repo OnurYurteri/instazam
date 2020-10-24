@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 /**
  * @author Onur Yurteri
@@ -14,10 +15,12 @@ import lombok.ToString;
 @Builder
 public class Recognition {
 
+    @Id
     String id;
     SourceType sourceType;
     String sourceUrl;
     RecognitionStatus status;
+    RecognitionResult result;
 
     //TODO: add result?
 
