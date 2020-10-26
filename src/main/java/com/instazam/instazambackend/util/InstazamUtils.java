@@ -9,6 +9,10 @@ import java.net.URISyntaxException;
 public class InstazamUtils {
 
     public static boolean isValidInstagramLink(String url) {
+        if (!url.contains("instagram")) {
+            return false;
+        }
+
         URI uri = null;
         try {
             uri = new URI(url);

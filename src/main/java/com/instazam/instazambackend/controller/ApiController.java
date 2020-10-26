@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,19 +28,13 @@ public class ApiController {
     @RequestMapping(value = "recognize-from-video", method = RequestMethod.POST)
     public ResponseEntity<Recognition> test(HttpServletRequest request, @RequestBody RecognizeFromVideoRequest body) throws Exception {
 
-        if (!body.getUrl().contains("instagram")) {
-            throw new Exception("Gerçek instagram bu değil!");
+        if (!InstazamUtils.isValidInstagramLink(body.getUrl())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Url must be a valid instagram link!");
         }
 
-        if (InstazamUtils.isValidInstagramLink(body.getUrl())) {
+        Recognition recognition = recognitionService.save(Recognition.newEntry(body.getType(), body.getUrl()));
 
-        }
-
-        Recognition recognition = Recognition.newEntry(body.getType(), body.getUrl());
-
-        recognitionService.save(recognition);
-
-        return new ResponseEntity<>(status, HttpStatus.OK);
+        return new ResponseEntity<>(recognition, HttpStatus.OK);
     }
 
 }
