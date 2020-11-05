@@ -7,9 +7,6 @@ cd instazam
 ./mvnw package
 docker build -t instazam-backend:1.0 .
 docker-compose up
-
-http://localhost/
-http://localhost:8080/
 ```
 
 ### Test It
