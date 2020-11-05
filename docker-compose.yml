@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  backend-1:
+    image: instazam-backend:1.0
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  db_mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: "admin"
+    volumes:
+      - ./.mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./.mongo/volume:/data/db
+    ports:
+      - "27017-27019:27017-27019"
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
