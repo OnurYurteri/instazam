@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
  * @author Onur Yurteri
  */
 @Repository
-public interface RecognitionDao extends MongoRepository<Recognition, String> {
+public interface RecognitionDao extends MongoRepository<Recognition, String>, RecognitionCustomDao {
+
+
 
 }
