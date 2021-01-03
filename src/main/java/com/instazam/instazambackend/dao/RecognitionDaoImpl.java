@@ -1,6 +1,5 @@
 package com.instazam.instazambackend.dao;
 
-import com.instazam.instazambackend.model.Recognition;
 import com.instazam.instazambackend.model.RecognitionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -22,8 +21,4 @@ public class RecognitionDaoImpl implements RecognitionCustomDao {
 
     }
 
-    @Override
-    public void updateRecognition(Recognition recognition, RecognitionStatus status) {
-
-    }
 }

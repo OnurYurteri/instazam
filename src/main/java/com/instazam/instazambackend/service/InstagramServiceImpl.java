@@ -8,14 +8,14 @@ import com.instazam.instazambackend.util.InstazamUtils;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import org.springframework.stereotype.Service;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.util.Map;
 
 /**
  * @author Onur Yurteri
  */
+@Service
 public class InstagramServiceImpl implements InstagramService {
 
     private final String INSTAGRAM_BASE_URL = "https://instagram.com/";
@@ -27,8 +27,8 @@ public class InstagramServiceImpl implements InstagramService {
     public String getVideoUrlFromLink(String postUrl) {
         String postId = InstazamUtils.getInstagramPostId(postUrl);
         final InstagramDataResponse body = getInstagramClient().getPostDetails(postId).execute().body();
-        System.out.println(body);
-        return postUrl;
+
+        return body.getVideoUrl();
     }
 
     private InstagramClient getInstagramClient() {

@@ -6,7 +6,6 @@ package com.instazam.instazambackend.model;
 public enum RecognitionStatus {
 
     WAITING,
-    PROCESSING,
     FINISHED,
     NOT_FOUND,
     FAILED

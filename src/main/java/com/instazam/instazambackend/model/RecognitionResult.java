@@ -10,8 +10,16 @@ import java.util.Map;
 @Data
 public class RecognitionResult {
 
-    Map<String, Object> metadata;
-    Map<String, Object> apple;
+    String artist;
+    String title;
+    String album;
+    String release_date;
+    String label;
+    String timecode;
+    String song_link;
+    Map<String, Object> apple_music;
+    Map<String, Object> deezer;
+    Map<String, Object> napster;
     Map<String, Object> spotify;
 
 }

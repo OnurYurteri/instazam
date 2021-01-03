@@ -9,7 +9,7 @@ class InstagramServiceImplTest {
     InstagramServiceImpl instagramService = new InstagramServiceImpl();
 
     @Test
-    public void getVideoUrlFromLink(){
+    public void getVideoUrlFromLink() {
         String url = "https://www.instagram.com/p/CGbOaGEpkiL/";
         instagramService.getVideoUrlFromLink(url);
     }

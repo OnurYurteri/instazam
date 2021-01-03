@@ -5,6 +5,7 @@ package com.instazam.instazambackend.model;
  */
 public enum SourceType {
 
+    INSTAGRAM,
     VIDEO_MP4,
     AUDIO_MP3
 
