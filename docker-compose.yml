@@ -1,25 +1,36 @@
 version: "3"
 
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-static:/usr/share/nginx/html
+    networks:
+      - app-network
   backend-1:
-    image: instazam-backend:1.0
+    image: onuryurteri/instazam-backend:1.2
     ports:
       - "8080:8080"
     networks:
       - app-network
 
+  instazam-python:
+    image: onuryurteri/instazam-python:1.1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx-static/converted:/src/converted
+
   db_mongo:
     image: mongo
-    environment:
-      MONGO_INITDB_DATABASE: "admin"
     volumes:
-      - ./.mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./.mongo/volume:/data/db
     ports:
       - "27017-27019:27017-27019"
     networks:
       - app-network
-
 
 networks:
   app-network:
